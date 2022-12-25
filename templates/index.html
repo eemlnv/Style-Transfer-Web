@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>StyleTransformer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    .btn {
+      position: relative;
+        overflow: hidden;
+        z-index: 1;
+      padding: 10px 30px;
+      margin: 0 20px;
+      font-family: 'Montserrat Alternates', sans-serif;
+        font-weight: 600;
+        line-height: 20px;
+        color: black;
+        font-size: 20px;
+        text-transform: uppercase;
+      background: rgb(248, 97, 56);
+      border-width: 0;
+        box-shadow: 5px 5px 0 #532831;
+      outline: none;
+      cursor: pointer;
+        transition: 1.5s;
+    }
+
+    h1 {
+    font-family: 'Montserrat Alternates', sans-serif;
+    text-transform: uppercase;
+    background: rgb(230, 133, 106);
+    color: black;
+    font-size: 30px;
+    padding: 10px 40px;
+    margin: 0 0px;
+
+   }
+   
+
+    
+    /* Add a gray background color and some padding to the footer */
+    #footer {
+    position: fixed; /* Фиксированное положение */
+    left: 0; bottom: 0; /* Левый нижний угол */
+    padding: 10px; /* Поля вокруг текста */
+    background: rgb(230, 133, 106); /* Цвет фона */
+    color: black; /* Цвет текста */
+    width: 100%; /* Ширина слоя */
+   }
+
+
+   body {
+    background-image: url({{ url_for('static', filename='background.jpeg') }});
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100%;
+}
+
+  </style>
+</head>
+<body>
+
+
+
+
+<div><h1>
+  <div class="container text-center">
+    <h2>Style Transformer</h2>      
+  </div>
+</h1>
+</div>
+
+<br>
+
+<div class="container-fluid bg-1 text-center">    
+<form action="/success" method="post" enctype="multipart/form-data" >
+
+  <center>   
+      <span class="btn btn-default btn-file text-center">
+        <label for="file">Choose content image</label>
+        <input type="file" name="file1" required>
+      </span>
+  </center>
+
+  <br>
+
+  <center>  
+      <span class="btn btn-default btn-file text-center">
+        <label for="file">Choose style image</label>
+        <input type="file" name="file2" required>
+      </span>
+    </center>
+
+      <br>
+    <input type="submit" value="Upload your images" class="btn btn-primary" required>
+
+  </div>
+  </div>
+</div>
+</form>
+</div>
+
+
+{%if error == 1%}
+<br><br><br>
+<center><h1 style="color:#ff0000">ПОДДЕРЖИВАЮТСЯ ТОЛЬКО png, jpg и jpeg файлы</h1></center>
+{%endif%}
+
+
+{% for mesg in get_flashed_messages() %}
+    <h1>{{ mesg }}</h1>
+    {% endfor %}
+{%if error == 0%}
+
+<br>
+
+<div class="container">    
+  <div class="row">
+    <div class="col-sm-4"> 
+      <h3>content image</h3>
+      <img src="./static/images/content.jpg" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-4"> 
+      <h3>style image</h3>
+      <img src="./static/images/style.jpg" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-4"> 
+      <h3>target image</h3>
+      <img src="./static/images/target.jpg" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+  </div>
+</div>
+{%endif%}
+
+
+<div id="footer">
+  <center>
+   &copy;Emelin Egor</a> </center>
+ </div>
+
+
+</body>
+</html>
