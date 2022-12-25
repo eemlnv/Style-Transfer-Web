@@ -28,4 +28,4 @@ This web-app is got two pics and transfers the style of the second pic to the fi
 5. Go to the http://127.0.0.1:5000/
 6. To deploy an application globally we need to download service https://ngrok.com.
 7. Run the command ```ngrok http 127.0.0.1:5000```
-8. To the right of the Forwarding in the new opening window you can find necessary link.
+8. To the right of the *Forwarding* in the new opening window you can find necessary link.
